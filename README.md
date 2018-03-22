@@ -2,4 +2,8 @@
 
 To see the GUI run **main.py**
 
-To create a GUI from another file, import the *GUI class* from **GUI.py**
+Put all of the program code in the main() method
+
+Functions:
+**changeQuestion(num, text)**
+**getInput(num)**

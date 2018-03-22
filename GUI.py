@@ -13,7 +13,7 @@ class GUI(Frame):
 
         self.labels = [] # create labels
         for i in range(4):
-            self.labels.append( Label(self.root, text='Question 1', font='helvetica 20') )
+            self.labels.append( Label(self.root, text='Question', font='helvetica 20') )
             self.labels[i].grid(row=(2*i+1), column=1)
 
         self.entries = [] # create text boxes
@@ -22,29 +22,18 @@ class GUI(Frame):
             self.entries[j].grid(row=(2*j+2), column=1, pady=(8, 25))
 
         self.buttons = [] # create buttons
+        self.temp = [IntVar() for _ in range(4)]
         for k in range(4):
-            self.buttons.append( Button(self.root, text="Submit", command=(lambda n=k: self.pressed(n))) )
+            self.buttons.append( Button(self.root, text="Submit", command=(lambda n=k: self.temp[n].set(1))) )
             self.buttons[k].grid(row=(2*k+2), column=2, pady=(8, 25))
-            
-        self.root.mainloop()
 
-    # this method responds to a button press
-    def pressed(self, num):
-        print(self.entries[num].get())
-
-    ########################
-    ## HIDE A SCREEN SECTION
-    ## num: the number of the section that you want to hide [1 - 4]
-    ## Example to hide the first section -> hideSection(1)
-    def hideSection(self, num):
-        pass
-
-    ########################
-    ## SHOW A SCREEN SECTION
-    ## num: the number of the section that you want to show [1 - 4]
-    ## Example to show the first section -> showSection(1)
-    def showSection(self, num):
-        pass
+    ######################################
+    ## RETURN AN INPUT STRING FROM THE GUI
+    ## num: the text box to get input from [1 - 4]
+    ## Example to get input from the first text box -> getInput(1)
+    def getInput(self, num):
+        self.buttons[num-1].wait_variable(self.temp[num-1]) # wait for press
+        return self.entries[num-1].get()
 
     ##############################
     ## CHANGE A SECTION'S QUESTION
@@ -52,4 +41,4 @@ class GUI(Frame):
     ## text: the updated question
     ## Example to change the first question -> changeQuestion(1, 'my new question')
     def changeQuestion(self, num, text):
-        pass
+        self.labels[num-1]['text'] = text
