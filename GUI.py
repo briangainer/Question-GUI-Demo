@@ -47,8 +47,10 @@ class GUI(Frame):
         self.entries[index][0].grid(row=self.entries[index][1][0], column=self.entries[index][1][1], pady=(8, 25)) # show entry
         self.buttons[index][0].grid(row=self.buttons[index][1][0], column=self.buttons[index][1][1], pady=(8, 25)) # show button
 
-
     #######################
     ## CLEAR THE GUI SCREEN
     def clearScreen(self):
-        pass
+        for i in range(4):
+            self.labels[i][0].grid_forget()
+            self.entries[i][0].grid_forget()
+            self.buttons[i][0].grid_forget()

@@ -21,6 +21,7 @@ def main():
     answer = gui.getInput(4)
     print(answer)
 
+    gui.clearScreen() # clear the screen
     print('### end of main method ###')
 
 
